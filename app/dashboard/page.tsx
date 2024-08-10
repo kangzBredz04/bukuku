@@ -1,5 +1,6 @@
 "use client";
 
+import SkeletonCard from "@/components/SkeletonCard";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,6 +18,7 @@ interface Book {
 export default function Page() {
   const router = useRouter();
   const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch data buku dari API
@@ -27,6 +29,8 @@ export default function Page() {
         setBooks(data);
       } catch (error) {
         console.error("Error fetching books:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
