@@ -3,18 +3,29 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-// `app/page.tsx` is the UI for the `/` URL
 export default function Page() {
   const router = useRouter();
 
   return (
-    <>
-      <h1>Hello, Home page!</h1>
-      <Link href={"/dashboard"}>To Dashboard (Menggunakan Link)</Link>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
+      <h1 className="text-3xl font-bold mb-8 text-center">Hello, Home Page!</h1>
 
-      <button type="button" onClick={() => router.push("/dashboard")}>
-        To Dashboard (Menggunakan useRouter)
-      </button>
-    </>
+      <div className="flex space-x-4">
+        <Link
+          href="/dashboard"
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition"
+        >
+          To Dashboard (Menggunakan Link)
+        </Link>
+
+        <button
+          type="button"
+          onClick={() => router.push("/dashboard")}
+          className="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
+        >
+          To Dashboard (Menggunakan useRouter)
+        </button>
+      </div>
+    </div>
   );
 }
