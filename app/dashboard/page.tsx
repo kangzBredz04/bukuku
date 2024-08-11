@@ -1,36 +1,25 @@
 "use client";
 
-import SkeletonCard from "@/components/SkeletonCard";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-// Definisikan tipe data untuk buku
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  price: number;
-  genre: string;
-  publishedYear: number;
-}
+import { Book } from "../api/books/route";
 
 export default function Page() {
   const router = useRouter();
   const [books, setBooks] = useState<Book[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch data buku dari API
     const fetchBooks = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/books");
+        const response = await fetch("http://localhost:3000/api/books", {
+          cache: "force-cache",
+        });
         const data = await response.json();
         setBooks(data);
       } catch (error) {
         console.error("Error fetching books:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
