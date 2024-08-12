@@ -14,9 +14,7 @@ export default function Page() {
     // Fetch data buku dari API
     const fetchBooks = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/books", {
-          cache: "force-cache",
-        });
+        const response = await fetch("http://localhost:3000/api/books");
         const data = await response.json();
         setBooks(data);
       } catch (error) {
