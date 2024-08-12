@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Book } from "../api/books/route";
+import BookCard from "@/components/BookCard";
 
 export default function Page() {
   const router = useRouter();
@@ -52,22 +53,7 @@ export default function Page() {
       <main>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {books.map((book) => (
-            <div
-              key={book.id}
-              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition"
-            >
-              <h2 className="text-xl font-semibold mb-2 text-gray-900">
-                {book.title}
-              </h2>
-              <p className="text-gray-700 mb-1">Author: {book.author}</p>
-              <p className="text-gray-700 mb-1">Genre: {book.genre}</p>
-              <p className="text-gray-700 mb-2">
-                Published: {book.publishedYear}
-              </p>
-              <p className="text-blue-600 font-bold">
-                Price: Rp{book.price.toLocaleString()}
-              </p>
-            </div>
+            <BookCard key={book.id} book={book} />
           ))}
         </div>
       </main>
